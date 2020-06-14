@@ -1,9 +1,11 @@
+import { Role } from '../entity/user.entity';
 import {
   IsNotEmpty,
   MinLength,
   MaxLength,
   IsEmail,
   IsString,
+  IsOptional,
 } from 'class-validator';
 
 export class NewUserDto {
@@ -27,6 +29,9 @@ export class NewUserDto {
   @MinLength(6)
   @MaxLength(30)
   confirm_password: string;
+
+  @IsOptional()
+  role: Role;
 
   userId: string;
 }

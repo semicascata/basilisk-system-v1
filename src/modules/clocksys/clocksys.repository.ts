@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { ClockSys, Status } from './entity/clocksys.entity';
 import { Logger, InternalServerErrorException } from '@nestjs/common';
-import { User } from '../user/entity/user.entity';
+import { User, Role } from '../user/entity/user.entity';
 import { ClockEntry } from './dto/clock-entry.dto';
 
 @EntityRepository(ClockSys)
@@ -9,11 +9,11 @@ export class ClockRepository extends Repository<ClockSys> {
   private logger = new Logger('ClockSysRepository');
 
   // new entry
-  async newEntry(user: User): Promise<ClockSys> {
-    const clockEntry: ClockEntry = { times: new Date(), status: Status.IN };
+  async newEntry(user: User, clockEntry: ClockEntry): Promise<ClockSys> {
+    const { status } = clockEntry;
     const entry = new ClockSys();
-    entry.times = clockEntry.times;
-    entry.status = clockEntry.status;
+    entry.times = new Date();
+    entry.status = status;
     entry.user = user;
 
     try {

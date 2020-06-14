@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { User } from './entity/user.entity';
+import { User, Role } from './entity/user.entity';
 import { NewUserDto } from './dto/user.dto';
 import {
   Logger,
@@ -65,7 +65,7 @@ export class UsersRepository extends Repository<User> {
 
   // register new user
   async addUser(newUserDto: NewUserDto): Promise<User> {
-    const { username, email, password, confirm_password } = newUserDto;
+    const { username, email, password, confirm_password, role } = newUserDto;
     const newUser = new User();
 
     // check password
@@ -77,6 +77,9 @@ export class UsersRepository extends Repository<User> {
     newUser.username = username;
     newUser.email = email;
     newUser.password = password;
+
+    // testing only
+    newUser.role ? (newUser.role = Role.user) : (newUser.role = role);
 
     try {
       await this.save(newUser);

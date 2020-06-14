@@ -9,8 +9,8 @@ export class ClockSysService {
   constructor(private clockSysRepository: ClockRepository) {}
 
   // new entry
-  async newEntry(user: User): Promise<ClockSys> {
-    return this.clockSysRepository.newEntry(user);
+  async newEntry(user: User, clockEntry: ClockEntry): Promise<ClockSys> {
+    return this.clockSysRepository.newEntry(user, clockEntry);
   }
 
   // find entries

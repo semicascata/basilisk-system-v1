@@ -1,10 +1,11 @@
-import { Controller, Post, Get } from '@nestjs/common';
+import { Controller, Post, Get, UseGuards } from '@nestjs/common';
 import { ClockSysService } from './clocksys.service';
 import { GetUser } from '../../common/decorators/get-user.decorator';
 import { User } from '../user/entity/user.entity';
-import { ClockEntry } from './dto/clock-entry.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('bslsk/v1/clocksys')
+@UseGuards(AuthGuard('jwt'))
 export class ClocksysController {
   constructor(private clockSysService: ClockSysService) {}
 

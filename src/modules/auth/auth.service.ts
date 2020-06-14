@@ -66,4 +66,9 @@ export class AuthService {
       refreshToken,
     };
   }
+
+  // validate token, jwt-strategy
+  async validateToken(payload: JwtPayload): Promise<User> {
+    return await this.usersRepository.findUserByUsername(payload.username);
+  }
 }

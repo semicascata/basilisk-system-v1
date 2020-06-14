@@ -11,7 +11,6 @@ export class ClockRepository extends Repository<ClockSys> {
   // new entry
   async newEntry(user: User): Promise<ClockSys> {
     const clockEntry: ClockEntry = { times: new Date(), status: Status.IN };
-    console.log(clockEntry);
     const entry = new ClockSys();
     entry.times = clockEntry.times;
     entry.status = clockEntry.status;
@@ -20,8 +19,9 @@ export class ClockRepository extends Repository<ClockSys> {
     try {
       await this.save(entry);
       delete user.password;
-      console.log(user);
-      this.logger.verbose('New entry added: ' + entry.times);
+      this.logger.verbose(
+        `New entry added: ${entry.times}, User: "${user.username}"`,
+      );
 
       return entry;
     } catch (err) {

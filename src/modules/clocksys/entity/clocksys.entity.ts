@@ -24,6 +24,6 @@ export class ClockSys {
   )
   user: User;
 
-  // @Column()
-  // userId: number;
+  @Column()
+  userId: number;
 }

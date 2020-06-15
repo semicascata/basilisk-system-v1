@@ -11,6 +11,7 @@ import {
 import { createConnection } from 'typeorm';
 import { User } from '../../modules/user/entity/user.entity';
 import { ClockSys } from '../../modules/clocksys/entity/clocksys.entity';
+import { Company } from '../../modules/company/entity/company.entity';
 
 @Injectable()
 export class TypeOrmService implements TypeOrmOptionsFactory {
@@ -24,7 +25,7 @@ export class TypeOrmService implements TypeOrmOptionsFactory {
       username: TYPEORM_USERNAME!,
       password: TYPEORM_PASSWORD!,
       database: TYPEORM_DATABASE!,
-      entities: [User, ClockSys],
+      entities: [User, ClockSys, Company],
       synchronize: true,
     } as TypeOrmModuleOptions;
 

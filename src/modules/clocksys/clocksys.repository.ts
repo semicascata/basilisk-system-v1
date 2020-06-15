@@ -1,7 +1,7 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { ClockSys, Status } from './entity/clocksys.entity';
 import { Logger, InternalServerErrorException } from '@nestjs/common';
-import { User, Role } from '../user/entity/user.entity';
+import { User } from '../user/entity/user.entity';
 import { ClockEntry } from './dto/clock-entry.dto';
 
 @EntityRepository(ClockSys)
